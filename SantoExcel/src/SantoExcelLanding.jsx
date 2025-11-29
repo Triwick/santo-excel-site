@@ -231,7 +231,7 @@ const SantoExcelLanding = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Assistente IA Santo Excel</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Use nossa InteligÃªncia Artificial para criar fÃ³rmulas complexas ou entender erros nas suas planilhas instantaneamente.
+              Use nossa Inteligência Artificial para criar fÃ³rmulas complexas ou entender erros nas suas planilhas instantaneamente.
             </p>
           </div>
 
@@ -550,5 +550,6 @@ const SantoExcelLanding = () => {
     </div>
   );
 };
+
 
 export default SantoExcelLanding;
