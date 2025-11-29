@@ -283,7 +283,7 @@ const SantoExcelLanding = () => {
                   ) : (
                     <>
                       <Sparkles size={18} />
-                      {aiMode === 'formula' ? 'Gerar Fórmula Mágica ✨ : 'Explicar Erro ✨}
+                      {aiMode === 'formula' ? 'Gerar Fórmula Mágica ✨' : 'Explicar Erro ✨'}
                     </>
                   )}
                 </button>
@@ -552,4 +552,5 @@ const SantoExcelLanding = () => {
 };
 
 export default SantoExcelLanding;
+
 
