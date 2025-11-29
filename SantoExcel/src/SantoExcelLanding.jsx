@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, ShoppingBag, Youtube, Instagram, Mail, Menu, X, Check, Star, ArrowRight, ExternalLink, Sparkles, Brain, Copy, Terminal } from 'lucide-react';
 
 const SantoExcelLanding = () => {
@@ -23,7 +23,7 @@ const SantoExcelLanding = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // --- IntegraÃ§Ã£o com Gemini API ---
+  // --- Integração com Gemini API ---
   const handleGenerate = async () => {
     if (!aiInput.trim()) return;
 
@@ -31,10 +31,10 @@ const SantoExcelLanding = () => {
     setError('');
     setAiResult('');
 
-    const apiKey = ""; // A chave Ã© injetada automaticamente pelo ambiente
+    const apiKey = ""; // A chave é injetada automaticamente pelo ambiente
     const systemPrompt = aiMode === 'formula' 
-      ? "VocÃª Ã© um especialista em Excel do canal Santo Excel. O usuÃ¡rio descreverÃ¡ um problema. Responda APENAS com a fÃ³rmula do Excel para resolver, seguida de uma explicaÃ§Ã£o muito breve (1-2 frases) em portuguÃªs. Se for complexo, sugira uma funÃ§Ã£o. Exemplo: '=SOMA(A:A)' - Soma toda a coluna A."
-      : "VocÃª Ã© um especialista em Excel. O usuÃ¡rio vai colar uma fÃ³rmula com erro ou descrever um erro (como #N/A). Explique o motivo do erro e forneÃ§a a correÃ§Ã£o, de forma amigÃ¡vel e didÃ¡tica.";
+      ? "Você é um especialista em Excel do canal Santo Excel. O usuário descreverá um problema. Responda APENAS com a fórmula do Excel para resolver, seguida de uma explicação muito breve (1-2 frases) em português. Se for complexo, sugira uma função. Exemplo: '=SOMA(A:A)' - Soma toda a coluna A."
+      : "Você é um especialista em Excel. O usuário vai colar uma fórmula com erro ou descrever um erro (como #N/A). Explique o motivo do erro e forneça a correção, de forma amigável e didática.";
 
     try {
       const response = await fetch(
@@ -52,7 +52,7 @@ const SantoExcelLanding = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Erro na conexÃ£o com a IA");
+        throw new Error("Erro na conexão com a IA");
       }
 
       const data = await response.json();
@@ -61,11 +61,11 @@ const SantoExcelLanding = () => {
       if (text) {
         setAiResult(text);
       } else {
-        setError("NÃ£o foi possÃ­vel gerar uma resposta. Tente novamente.");
+        setError("Não foi possí­vel gerar uma resposta. Tente novamente.");
       }
     } catch (err) {
       console.error(err);
-      setError("Ocorreu um erro ao consultar o orÃ¡culo do Excel. Tente mais tarde.");
+      setError("Ocorreu um erro ao consultar o oráculo do Excel. Tente mais tarde.");
     } finally {
       setIsLoading(false);
     }
@@ -78,40 +78,40 @@ const SantoExcelLanding = () => {
   const videos = [
     {
       id: "XVfYp7BTE9U",
-      title: "Bingo Automatizado 5 PrÃªmios",
-      description: "Veja como funciona o sistema completo para gerenciar bingos com mÃºltiplos prÃªmios."
+      title: "Bingo Automatizado 5 Prêmios",
+      description: "Veja como funciona o sistema completo para gerenciar bingos com múltiplos prêmios."
     },
     {
       id: "Tw0TUAqG7zU",
-      title: "Bingo TemÃ¡tico de SÃ£o JoÃ£o",
-      description: "A soluÃ§Ã£o perfeita para sua festa junina. Cartelas personalizadas e sorteio automÃ¡tico."
+      title: "Bingo Temático de São João",
+      description: "A solução perfeita para sua festa junina. Cartelas personalizadas e sorteio automático."
     },
     {
       id: "81Ipk7TVgx4",
       title: "Gerador de Cartelas de Bingo",
-      description: "Gere e imprima cartelas de bingo de forma rÃ¡pida e prÃ¡tica no Excel."
+      description: "Gere e imprima cartelas de bingo de forma rápida e prática no Excel."
     }
   ];
 
   const products = [
     {
-      title: "Cartelas de Bingo BÃ¡sicas",
+      title: "Cartelas de Bingo Básicas",
       price: "Ver Oferta",
       link: "https://hotm.art/CartelinhasBasicas",
-      features: ["GeraÃ§Ã£o AutomÃ¡tica", "ImpressÃ£o RÃ¡pida", "ConferÃªncia Simples"],
+      features: ["Geração Automática", "Impressão Rápida", "Conferência Simples"],
       color: "bg-blue-600",
       popular: false
     },
     {
-      title: "Bingo 5 PrÃªmios (Completo)",
+      title: "Bingo 5 Prêmios (Completo)",
       price: "Ver Oferta",
       link: "https://hotm.art/CartelonaAutomatizada",
-      features: ["5 Rodadas de PrÃªmios", "Painel de Sorteio", "ValidaÃ§Ã£o AutomÃ¡tica"],
+      features: ["5 Rodadas de Prêmios", "Painel de Sorteio", "Validação Automática"],
       color: "bg-emerald-600",
       popular: true
     },
     {
-      title: "Bingo de SÃ£o JoÃ£o",
+      title: "Bingo de São João",
       price: "Ver Oferta",
       link: "https://hotm.art/CartelinhasArraia",
       features: ["Tema Junino Exclusivo", "Cartelas Personalizadas", "Pronto para Imprimir"],
@@ -134,7 +134,7 @@ const SantoExcelLanding = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 font-medium text-slate-600">
-            <a href="#inicio" className="hover:text-emerald-600 transition-colors">InÃ­cio</a>
+            <a href="#inicio" className="hover:text-emerald-600 transition-colors">Iní­cio</a>
             <a href="#ia-tools" className="hover:text-emerald-600 transition-colors flex items-center gap-1"><Sparkles size={14} className="text-amber-500"/> Ferramentas IA</a>
             <a href="#videos" className="hover:text-emerald-600 transition-colors">Tutoriais</a>
             <a href="#loja" className="hover:text-emerald-600 transition-colors">Planilhas</a>
@@ -154,7 +154,7 @@ const SantoExcelLanding = () => {
         {/* Mobile Menu Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 flex flex-col p-6 gap-4 animate-in slide-in-from-top-5">
-            <a href="#inicio" onClick={toggleMenu} className="text-lg font-medium text-slate-700">InÃ­cio</a>
+            <a href="#inicio" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Iní­cio</a>
             <a href="#ia-tools" onClick={toggleMenu} className="text-lg font-medium text-slate-700 flex items-center gap-2"><Sparkles size={16} className="text-amber-500"/>Ferramentas IA</a>
             <a href="#videos" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Tutoriais</a>
             <a href="#loja" onClick={toggleMenu} className="text-lg font-medium text-slate-700">Planilhas</a>
@@ -178,12 +178,12 @@ const SantoExcelLanding = () => {
               Transforme suas Planilhas em <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-300">Ferramentas Poderosas</span>
             </h1>
             <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Tutoriais passo a passo, dicas de produtividade e planilhas prontas para vocÃª economizar tempo e impressionar no trabalho. Junte-se Ã  nossa comunidade no YouTube.
+              Tutoriais passo a passo, dicas de produtividade e planilhas prontas para você economizar tempo e impressionar no trabalho. Junte-se à nossa comunidade no YouTube.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a href="#ia-tools" className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-amber-400 hover:to-orange-400 transition-all shadow-lg shadow-amber-900/30 flex items-center justify-center gap-2 animate-pulse-slow">
                 <Sparkles size={20} />
-                Testar IA GrÃ¡tis
+                Testar IA Grátis
               </a>
               <a href="#loja" className="bg-emerald-600/30 backdrop-blur-sm border border-emerald-500/50 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-emerald-600/50 transition-all flex items-center justify-center gap-2">
                 <ShoppingBag size={20} />
@@ -203,7 +203,7 @@ const SantoExcelLanding = () => {
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 z-20">
                     <p className="font-bold text-xl">Aprenda a criar Dashboards</p>
-                    <p className="text-emerald-300 text-sm">DisponÃ­vel no canal Santo Excel</p>
+                    <p className="text-emerald-300 text-sm">Dispons­ável no canal Santo Excel</p>
                 </div>
              </div>
              {/* Floating Badge */}
@@ -213,7 +213,7 @@ const SantoExcelLanding = () => {
                       <Youtube size={24} fill="currentColor" />
                    </div>
                    <div>
-                      <p className="font-bold text-sm">Novos VÃ­deos</p>
+                      <p className="font-bold text-sm">Novos Ví­deos</p>
                       <p className="text-xs text-slate-500">Toda semana</p>
                    </div>
                 </div>
@@ -231,7 +231,7 @@ const SantoExcelLanding = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Assistente IA Santo Excel</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Use nossa Inteligência Artificial para criar fÃ³rmulas complexas ou entender erros nas suas planilhas instantaneamente.
+              Use nossa Inteligência Artificial para criar fórmulas complexas ou entender erros nas suas planilhas instantaneamente.
             </p>
           </div>
 
@@ -243,28 +243,28 @@ const SantoExcelLanding = () => {
                 className={`flex-1 py-4 text-center font-bold flex items-center justify-center gap-2 transition-colors ${aiMode === 'formula' ? 'bg-emerald-600 text-white' : 'hover:bg-slate-50 text-slate-600'}`}
               >
                 <Terminal size={18} />
-                Gerador de FÃ³rmulas
+                Gerador de Fórmulas
               </button>
               <button 
                 onClick={() => { setAiMode('explain'); setAiResult(''); setError(''); }}
                 className={`flex-1 py-4 text-center font-bold flex items-center justify-center gap-2 transition-colors ${aiMode === 'explain' ? 'bg-emerald-600 text-white' : 'hover:bg-slate-50 text-slate-600'}`}
               >
                 <Brain size={18} />
-                Tira-DÃºvidas & Erros
+                Tira-Dúvidas & Erros
               </button>
             </div>
 
             <div className="p-6 md:p-8">
               <div className="mb-6">
                 <label className="block text-slate-700 font-semibold mb-2">
-                  {aiMode === 'formula' ? 'O que vocÃª quer calcular?' : 'Qual o erro ou dÃºvida?'}
+                  {aiMode === 'formula' ? 'O que você quer calcular?' : 'Qual o erro ou dúvida?'}
                 </label>
                 <textarea 
                   value={aiInput}
                   onChange={(e) => setAiInput(e.target.value)}
                   placeholder={aiMode === 'formula' 
                     ? "Ex: Quero somar os valores da coluna A apenas se a coluna B tiver a palavra 'Pago'..." 
-                    : "Ex: Minha fÃ³rmula PROCV estÃ¡ dando erro #N/D, o que isso significa?"}
+                    : "Ex: Minha fórmula PROCV está dando erro #N/D, o que isso significa?"}
                   className="w-full p-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none min-h-[120px] text-slate-700 resize-none"
                 />
               </div>
@@ -283,7 +283,7 @@ const SantoExcelLanding = () => {
                   ) : (
                     <>
                       <Sparkles size={18} />
-                      {aiMode === 'formula' ? 'Gerar FÃ³rmula MÃ¡gica âœ¨' : 'Explicar Erro âœ¨'}
+                      {aiMode === 'formula' ? 'Gerar Fórmula Mágica âœ¨' : 'Explicar Erro âœ¨'}
                     </>
                   )}
                 </button>
@@ -307,7 +307,7 @@ const SantoExcelLanding = () => {
                     </div>
                   </div>
                   <p className="text-xs text-slate-500 mt-2 text-center">
-                    *A IA pode cometer erros. Sempre verifique a fÃ³rmula antes de usar em dados importantes.
+                    *A IA pode cometer erros. Sempre verifique a fórmula antes de usar em dados importantes.
                   </p>
                 </div>
               )}
@@ -328,15 +328,15 @@ const SantoExcelLanding = () => {
         <div className="container mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-20 text-center">
             <div>
                 <p className="text-3xl font-bold text-slate-800">+50</p>
-                <p className="text-sm text-slate-500 uppercase tracking-wide">VÃ­deos Gratuitos</p>
+                <p className="text-sm text-slate-500 uppercase tracking-wide">Ví­deos Gratuitos</p>
             </div>
             <div>
                 <p className="text-3xl font-bold text-slate-800">100%</p>
-                <p className="text-sm text-slate-500 uppercase tracking-wide">PrÃ¡tico</p>
+                <p className="text-sm text-slate-500 uppercase tracking-wide">Prático</p>
             </div>
             <div>
                 <p className="text-3xl font-bold text-slate-800">Pro</p>
-                <p className="text-sm text-slate-500 uppercase tracking-wide">ConteÃºdo AvanÃ§ado</p>
+                <p className="text-sm text-slate-500 uppercase tracking-wide">Conteúdo Avançado</p>
             </div>
         </div>
       </section>
@@ -347,7 +347,7 @@ const SantoExcelLanding = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Aulas em Destaque</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
-              Confira os vÃ­deos demonstrativos das nossas planilhas de Bingo.
+              Confira os ví­deos demonstrativos das nossas planilhas de Bingo.
             </p>
           </div>
 
@@ -379,7 +379,7 @@ const SantoExcelLanding = () => {
           
           <div className="text-center mt-12">
             <a href="https://www.youtube.com/@santoexcel/videos" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border-2 border-slate-300 px-6 py-3 rounded-full text-slate-700 font-semibold hover:border-emerald-500 hover:text-emerald-600 transition-colors">
-              Ver todos os vÃ­deos
+              Ver todos os ví­deos
               <ArrowRight size={18} />
             </a>
           </div>
@@ -393,7 +393,7 @@ const SantoExcelLanding = () => {
             <div className="max-w-2xl">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Loja Santo Excel</h2>
                 <p className="text-slate-600 text-lg">
-                Adquira nossas planilhas de Bingo AutomÃ¡ticas e transforme seus eventos.
+                Adquira nossas planilhas de Bingo Automáticas e transforme seus eventos.
                 </p>
             </div>
             <div className="hidden md:block">
@@ -446,10 +446,10 @@ const SantoExcelLanding = () => {
 
           <div className="mt-16 bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center">
             <h3 className="text-xl font-bold mb-2">Precisa de uma planilha personalizada?</h3>
-            <p className="text-slate-600 mb-6">Desenvolvo soluÃ§Ãµes sob medida para o seu negÃ³cio.</p>
+            <p className="text-slate-600 mb-6">Desenvolvo soluções sob medida para o seu negócio.</p>
             <a href="mailto:contato@santoexcel.com.br" className="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700">
               <Mail size={20} />
-              Solicitar OrÃ§amento
+              Solicitar Orçamento
             </a>
           </div>
         </div>
@@ -472,23 +472,23 @@ const SantoExcelLanding = () => {
                 <div className="md:w-1/2">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Sobre o Santo Excel</h2>
                     <p className="text-emerald-100 text-lg mb-6 leading-relaxed">
-                        Seja bem-vindo ao canal! Aqui vocÃª encontra tutoriais passo a passo, dicas e truques para melhorar suas habilidades no uso deste poderoso software de planilhas.
+                        Seja bem-vindo ao canal! Aqui você encontra tutoriais passo a passo, dicas e truques para melhorar suas habilidades no uso deste poderoso software de planilhas.
                     </p>
                     <p className="text-emerald-200/80 mb-8">
-                        Seja vocÃª um iniciante aprendendo o bÃ¡sico ou um usuÃ¡rio avanÃ§ado procurando aprimorar suas habilidades, nosso objetivo Ã© tornar o Excel acessÃ­vel e Ãºtil para sua carreira e negÃ³cios.
+                        Seja você um iniciante aprendendo o básico ou um usuário avançado procurando aprimorar suas habilidades, nosso objetivo é tornar o Excel acessí­vel e útil para sua carreira e negócios.
                     </p>
                     <div className="flex flex-wrap gap-4">
                         <div className="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700">
                             <p className="font-bold text-2xl text-emerald-300">VBA</p>
-                            <p className="text-xs text-emerald-200">AutomaÃ§Ã£o</p>
+                            <p className="text-xs text-emerald-200">Automação</p>
                         </div>
                         <div className="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700">
                             <p className="font-bold text-2xl text-emerald-300">Dashboards</p>
-                            <p className="text-xs text-emerald-200">Visuais IncrÃ­veis</p>
+                            <p className="text-xs text-emerald-200">Visuais Incrí­veis</p>
                         </div>
                         <div className="bg-emerald-800/50 p-4 rounded-lg border border-emerald-700">
-                            <p className="font-bold text-2xl text-emerald-300">FÃ³rmulas</p>
-                            <p className="text-xs text-emerald-200">LÃ³gica AvanÃ§ada</p>
+                            <p className="font-bold text-2xl text-emerald-300">Fórmulas</p>
+                            <p className="text-xs text-emerald-200">Lógica Avançada</p>
                         </div>
                     </div>
                 </div>
@@ -506,7 +506,7 @@ const SantoExcelLanding = () => {
                         Santo Excel
                     </div>
                     <p className="max-w-sm mb-6">
-                        Levando seu conhecimento em planilhas para o prÃ³ximo nÃ­vel. ConteÃºdo prÃ¡tico e direto ao ponto.
+                        Levando seu conhecimento em planilhas para o próximo ní­vel. Conteúdo prático e direto ao ponto.
                     </p>
                     <div className="flex gap-4">
                         <a href="https://www.youtube.com/@santoexcel" className="bg-slate-800 p-2 rounded-full hover:bg-red-600 hover:text-white transition-colors">
@@ -522,7 +522,7 @@ const SantoExcelLanding = () => {
                 </div>
                 
                 <div>
-                    <h4 className="text-white font-bold mb-4">Links RÃ¡pidos</h4>
+                    <h4 className="text-white font-bold mb-4">Links Rápidos</h4>
                     <ul className="space-y-2">
                         <li><a href="#inicio" className="hover:text-emerald-400 transition-colors">InÃ­cio</a></li>
                         <li><a href="#ia-tools" className="hover:text-emerald-400 transition-colors">Ferramentas IA</a></li>
@@ -534,10 +534,10 @@ const SantoExcelLanding = () => {
 
                 <div>
                     <h4 className="text-white font-bold mb-4">Contato</h4>
-                    <p className="mb-2">DÃºvidas sobre as planilhas?</p>
+                    <p className="mb-2">Dúvidas sobre as planilhas?</p>
                     <a href="mailto:contato@santoexcel.com.br" className="text-emerald-400 hover:underline block mb-4">contato@santoexcel.com.br</a>
                     <p className="text-xs text-slate-600">
-                        *Este site nÃ£o Ã© afiliado Ã  Microsoft. Excel Ã© uma marca registrada da Microsoft Corporation.
+                        *Este site não é afiliado à  Microsoft. Excel é uma marca registrada da Microsoft Corporation.
                     </p>
                 </div>
             </div>
@@ -550,6 +550,5 @@ const SantoExcelLanding = () => {
     </div>
   );
 };
-
 
 export default SantoExcelLanding;
