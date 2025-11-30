@@ -3,60 +3,46 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const { prompt, mode } = req.body;
+
+  if (!prompt) {
+    return res.status(400).json({ error: 'Prompt vazio' });
+  }
+
+  const systemPrompt =
+    mode === 'formula'
+      ? 'Você é um especialista em Excel. Gere apenas a fórmula e uma explicação curta.'
+      : 'Explique erros de fórmulas do Excel de forma simples e didática.';
+
   try {
-    const body = typeof req.body === 'string'
-      ? JSON.parse(req.body)
-      : req.body;
-
-    const { prompt, mode } = body || {};
-
-    if (!prompt) {
-      return res.status(400).json({ error: 'Prompt não enviado' });
-    }
-
-    if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: 'API Key não configurada' });
-    }
-
-    const systemPrompt =
-      mode === 'formula'
-        ? 'Você é um especialista em Excel. Responda com a fórmula correta e uma breve explicação.'
-        : 'Explique o erro do Excel e forneça a correção.';
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                { text: `${systemPrompt}\n\nPergunta: ${prompt}` }
-              ]
-            }
-          ]
-        })
-      }
-    );
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4.1-mini',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: prompt }
+        ],
+        temperature: 0.3,
+      }),
+    });
 
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(500).json({
-        error: 'Erro da IA',
-        details: data
-      });
+      console.error(data);
+      return res.status(500).json({ error: 'Erro ao consultar a IA' });
     }
 
-    const result =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      'Não foi possível gerar resposta.';
-
-    return res.status(200).json({ result });
-
+    res.status(200).json({
+      result: data.choices[0].message.content,
+    });
   } catch (err) {
-    console.error('ERRO API:', err);
-    return res.status(500).json({ error: 'Erro interno da API' });
+    console.error(err);
+    res.status(500).json({ error: 'Erro interno do servidor' });
   }
 }
