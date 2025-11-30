@@ -4,10 +4,18 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { prompt, mode } = req.body;
+    const body = typeof req.body === 'string'
+      ? JSON.parse(req.body)
+      : req.body;
+
+    const { prompt, mode } = body || {};
+
+    if (!prompt) {
+      return res.status(400).json({ error: 'Prompt não enviado' });
+    }
 
     if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: 'API key não configurada' });
+      return res.status(500).json({ error: 'API Key não configurada' });
     }
 
     const systemPrompt =
@@ -23,21 +31,32 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           contents: [
             {
-              parts: [{ text: `${systemPrompt}\n\nPergunta: ${prompt}` }],
-            },
-          ],
-        }),
+              parts: [
+                { text: `${systemPrompt}\n\nPergunta: ${prompt}` }
+              ]
+            }
+          ]
+        })
       }
     );
 
     const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(500).json({
+        error: 'Erro da IA',
+        details: data
+      });
+    }
+
     const result =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       'Não foi possível gerar resposta.';
 
-    res.status(200).json({ result });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao consultar a IA' });
+    return res.status(200).json({ result });
+
+  } catch (err) {
+    console.error('ERRO API:', err);
+    return res.status(500).json({ error: 'Erro interno da API' });
   }
 }
