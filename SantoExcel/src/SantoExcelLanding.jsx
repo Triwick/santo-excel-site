@@ -510,7 +510,7 @@ const handleGenerate = async () => {
                 <div>
                     <h4 className="text-white font-bold mb-4">Links Rápidos</h4>
                     <ul className="space-y-2">
-                        <li><a href="#inicio" className="hover:text-emerald-400 transition-colors">InÃ­cio</a></li>
+                        <li><a href="#inicio" className="hover:text-emerald-400 transition-colors">InÍ­cio</a></li>
                         <li><a href="#ia-tools" className="hover:text-emerald-400 transition-colors">Ferramentas IA</a></li>
                         <li><a href="#videos" className="hover:text-emerald-400 transition-colors">Tutoriais</a></li>
                         <li><a href="#loja" className="hover:text-emerald-400 transition-colors">Loja de Planilhas</a></li>
@@ -536,5 +536,6 @@ const handleGenerate = async () => {
     </div>
   );
 };
+
 
 export default SantoExcelLanding;
